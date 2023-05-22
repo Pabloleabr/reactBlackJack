@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blacktable{
+  width: 70vw;
+  height: 70vh;
+}
+
+.card{
+  width: 90px;
+  height: 126px;
+  background-color: aliceblue;
+  color: black;
+}
