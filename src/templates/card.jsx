@@ -13,9 +13,8 @@ function Card({number, suit, flipped = false}) {
     }
     return (
         <>
-        <div className='card rounded' onClick={handleClick}>
             {flippedState ? <CardFront number={number} suit={suit}></CardFront> : <CardBack src="/src/assets/cardBack.jpg" ></CardBack>}
-        </div>
+
         </>
     )
 }
