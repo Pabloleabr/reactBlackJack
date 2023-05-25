@@ -5,19 +5,16 @@ import { Mazo, Hand } from './logic'
 import { useState } from 'react'
 
 function App() {
-  const mazo = new Mazo()
-  const [playerHand, setPlayerHandState] = useState(new Hand("player", [mazo.draw(), mazo.draw()]))
+  const [mazo, setMazo ]= useState(new Mazo())
+  const [playerHand, setPlayerHandState] = useState(new Hand("player", []))
 
-
-  function deckDraw(hand){
-    hand.add(mazo.draw())
+  const deckDraw = (hand) => {
+    const newMazo = new Mazo(mazo.cards)
+    hand.add(newMazo.draw())
     const newHand = new Hand(hand.name, hand.cards)
     setPlayerHandState(newHand);
+    setMazo(newMazo)
     console.log(newHand.sum());
-    /**TODO 
-     * fix sum cause it is not working properly
-     * Deck is getting repeated cards!
-    */
   }
 
   const handdleDeckClick = () => {

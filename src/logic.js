@@ -2,8 +2,13 @@ import { PALOS } from "./constants"
 
 export class Mazo{
 
-    constructor() {
-        this.reset()
+    constructor(mazo) {
+        if (typeof mazo == "object"){
+            this.cards = [...mazo]
+        } else {
+            this.reset()
+        }
+        
     }
 
     /**
@@ -61,8 +66,8 @@ export class Hand{
     }
 
     sum() {        
-        let Sum = this.cards.reduce((a, b) => a + (b.number > 10 ? 10 : b.number))
-        console.log(Sum);
+        let Sum = this.cards.reduce((a, b) => a + (b.number > 10 ? 10 : b.number), 0)
+
         let aces = 0
         for (const card of this.cards) {
             if(card.number == 1) {
@@ -71,7 +76,7 @@ export class Hand{
         }
         for(let i=0; i < aces; i++){
             if(Sum < 12){
-                Sum += 9 //because the 1 will count as a 10
+                Sum += 10 //because the 1 will count as a 11
             }
         }
         return Sum
