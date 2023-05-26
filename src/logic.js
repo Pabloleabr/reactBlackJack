@@ -65,6 +65,10 @@ export class Hand{
         return this
     }
 
+    /**
+     * 
+     * @returns {int} The sum of the cards in the hand applying BJ rules 
+     */
     sum() {        
         let Sum = this.cards.reduce((a, b) => a + (b.number > 10 ? 10 : b.number), 0)
 
@@ -83,38 +87,36 @@ export class Hand{
         
     }
 
+    /**
+     * @param {Hand} house the other hand that you want to compare with
+     * 
+     * @returns {boolean} true if the player wins false if the house wins.
+     */
+    checkWinner(house) {
+        const houseSum = house.sum()
+        const playerSum = this.sum()
+        if((playerSum < 22 && houseSum < playerSum) || houseSum > 21){
+            return true
+        }
+        return false
+    }
+
+    flipAll () {
+        for (const card of this.cards) {
+            card.flipped = true
+        }
+        return this.cards
+    }
+
     clear() {
         this.cards = []
     }
 }
 
-/**
- * @param {Hand} houseHand The Hand the house has.
- * @param {Hand} playerHand The Hand the house has.
- */
-export class Board{
-    constructor(houseHand, playerHand){
-        this.house = houseHand
-        this.player = playerHand
-    }
-
-    /**
-     * 
-     * @returns {boolean} true if the player wins false if the house wins.
-     */
-    checkWinner() {
-        const houseSum = this.house.sum()
-        const playerSum = this.player.sum()
-        if(playerSum < 22 && houseSum < playerSum && houseSum > 21){
-            return true
-        }
-        return false
-    }
-}
-
 export class Card{
-    constructor(number, suit){
+    constructor(number, suit, flipped = true){
         this.number = number
         this.suit = suit
+        this.flipped = flipped
     }
 }

@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --card-height: 126px;
+}
+
 
 .blacktable{
   width: 70vw;
@@ -9,7 +13,11 @@
 
 .card{
   width: 90px;
-  height: 126px;
+  height: var(--card-height);
   background-color: aliceblue;
   color: black;
+}
+
+.h-card{
+  height: var(--card-height);
 }
