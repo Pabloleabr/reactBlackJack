@@ -11,6 +11,10 @@
   height: 70vh;
 }
 
+button{
+  user-select: none;
+}
+
 .card{
   width: 90px;
   height: var(--card-height);

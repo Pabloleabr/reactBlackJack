@@ -95,7 +95,7 @@ export class Hand{
     checkWinner(house) {
         const houseSum = house.sum()
         const playerSum = this.sum()
-        if((playerSum < 22 && houseSum < playerSum) || houseSum > 21){
+        if(playerSum < 22 && (houseSum < playerSum || houseSum > 21)){
             return true
         }
         return false
