@@ -12,8 +12,9 @@ function App() {
   const [playingState, setPlayingState] = useState(false)
   const [NumWonGames, setNumWonGames] = useState(0)
   const [NumLostGames, setNumLostGames] = useState(0)
+  const [NumCards, setNumCards] = useState(mazo.cards.length)
   const [winState, setWinState] = useState(true)
-  
+
   
   const gameStart = () => {
     //house draws
@@ -26,7 +27,7 @@ function App() {
     playerHand.add(mazo.draw())
     playerHand.add(mazo.draw())
     setPlayerHandState(new Hand(playerHand.name, playerHand.cards))
-
+    setNumCards(mazo.cards.length)
 
   }
   
@@ -37,6 +38,7 @@ function App() {
       if(playerHand.sum() > 21){
         checkWinner()
       }
+      setNumCards(mazo.cards.length)
     }
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,9 +71,9 @@ function App() {
         setWinState(false)
         setNumLostGames(NumLostGames+1)
       }
-      console.log(mazo.cards);
       setHouseHandState(new Hand(houseHand.name, houseHand.cards))
       setPlayingState(true)
+      setNumCards(mazo.cards.length)
     }
   return (
       <main className='flex flex-col items-center justify-start m-8'>
@@ -89,8 +91,9 @@ function App() {
               </div>
           </div>
           <div className='flex justify-center gap-14 text-2xl' >
+            
               <button onClick={handdleDeckClick} disabled={playingState} className={playingState ? "opacity-80" : ""}>
-                <Card number={0} suit={PALOS.corazon} flipped={false} ></Card>
+                <Card number={0} suit={PALOS.corazon} flipped={false} > </Card>{NumCards}
               </button>
 
               <button className={`${playingState ? "text-white" : "text-green-600"}`} onClick={nextHand} disabled={!playingState} >
@@ -108,6 +111,7 @@ function App() {
               })
               }
               </div>
+
 
           </div>
           </>
