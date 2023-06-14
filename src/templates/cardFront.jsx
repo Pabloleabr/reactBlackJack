@@ -5,7 +5,7 @@ function CardFront({number, suit}) {
         <p className=" text-lg font-bold font-mono p-0 pl-1">
         {number}
         </p>
-        <img src={"/src/assets/"+ suit + ".svg"} alt={suit} className="p-1"/>
+        <img src={"/public/assets/"+ suit + ".svg"} alt={suit} className="p-1"/>
         </div>
     )
 
