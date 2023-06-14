@@ -3,7 +3,7 @@ import './../App.css'
 import { NUMTOLETTER } from '../constants'
 import CardBack from './cardback'
 import CardFront from './cardFront'
-import cardback from  "/public/assets/cardBack.jpg" //necesary for the build to add the image
+import cardbackimg from "/src/assets/cardBack.jpg"
 // eslint-disable-next-line react/prop-types
 function Card({number, suit, flipped = true}) {
 
@@ -11,7 +11,7 @@ function Card({number, suit, flipped = true}) {
     
     return (
         <>
-            {flipped ? <CardFront number={value} suit={suit}></CardFront> : <CardBack src={cardback} ></CardBack>}
+            {flipped ? <CardFront number={value} suit={suit}></CardFront> : <CardBack src={cardbackimg} ></CardBack>}
 
         </>
     )
