@@ -8,6 +8,7 @@ export class Mazo{
         } else {
             this.reset()
         }
+        this.count = 0
         
     }
 
@@ -33,8 +34,13 @@ export class Mazo{
      * Removes a card from the deck and returns it.
      * @returns {Card} 
      */
-    draw() {
-        return this.cards.pop()
+    draw(flip = false) {
+        let cardDrawn = this.cards.pop()
+        if (flip) {
+            cardDrawn.flipped = false
+        }
+        this.changeCount(cardDrawn)
+        return cardDrawn
     }
     /**
      * resets the deck of cards and shuffles it.
@@ -48,6 +54,25 @@ export class Mazo{
         }
         this.shuffle()
     }
+    /**
+    * @param {Card} card the card being added to the count
+    */
+    changeCount(card){
+        /**
+         * 2-6 = +1
+         * 7-9 = 0
+         * 10-Ace= -1
+         */
+        if (!card.flipped) {
+            return
+        }
+        if(card.number > 1 & card.number <7){
+            this.count += 1
+        }else if(card.number >= 10 | card.number == 1){
+            this.count -=1
+        }
+    }
+
 }
 
 /**
